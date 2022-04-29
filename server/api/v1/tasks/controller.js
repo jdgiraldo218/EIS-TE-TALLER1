@@ -40,6 +40,10 @@ exports.read = (req, res) => {
 
 exports.update = (req, res) => {
   const { body = {}, params = {} } = req;
+  const { author = "", description = "" } = body;
+  const { id = "" } = params;
+
+  update(id, author, description);
   res.json({
     data: body,
     included: {
@@ -49,5 +53,8 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res) => {
+  const { params = {} } = req;
+  const { id = "" } = params;
+  remove(id);
   res.json({});
 };
